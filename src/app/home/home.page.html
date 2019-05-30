@@ -1,14 +1,78 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
+  <ion-toolbar color="medium" slot="primary" mode="md">
+    <ion-title color="light">
+      Budget Manager
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content slot="fixed" fullscreen='true'>
+  <ion-grid class="balances">
+    <ion-row>
+
+      <ion-col>
+        <ion-grid style="padding: 0%">
+          <ion-row>
+            <ion-col size="12" size-sm>
+              <ion-text color="medium">
+                <p style="font-size: 10px; margin: 0 20px; padding-left: 40px">Expenses</p>
+              </ion-text>
+              <ion-text color="primary">
+                <h3 style="margin: 2px 20px; padding-left: 30px">50000</h3>
+              </ion-text>
+            </ion-col>
+            <ion-col size="12" size-sm>
+              <ion-text color="medium">
+                <p style="font-size: 10px; margin: 0 20px; padding-left: 40px">Income</p>
+              </ion-text>
+              <ion-text color="secondary">
+                <h3 style="margin: 2px 20px; padding-left: 30px">50000</h3>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+
+      <hr style="width:1px; height: auto; background-color: black;">
+
+      <ion-col>
+        <ion-text color="secondary">
+          <h1 style="margin:35px 20px 0 20px; padding-left: 10px">50000</h1>
+        </ion-text>
+        <ion-text color="medium">
+          <p style="margin: 2px 20px; font-size: 10px;; padding-left: 10px;">Left To Spend</p>
+        </ion-text>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+    <div class="box" (click)="openPage('spending-limit')">
+      <ion-icon name="speedometer"></ion-icon>
+      <ion-text color="medium">
+        <p style="margin: 2px 20px; font-size: 10px; padding-left: 10px;">Set Spending Limit</p>
+      </ion-text>
+    </div>
+    <div class="box" defaultHref="/add-spending">
+      <ion-icon name="cart" (click)="openPage('spending')"></ion-icon>
+      <ion-text color="medium">
+        <p style="margin: 2px 20px; font-size: 10px; padding-left: 10px;">Add Expenses</p>
+      </ion-text>
+    </div>
+    <div class="box">
+      <ion-icon name="cash" (click)="openPage('income')"></ion-icon>
+      <ion-text color="medium">
+        <p style="margin: 2px 20px; font-size: 10px; padding-left: 10px;">Add Income</p>
+      </ion-text>
+    </div>
+    <div class="box">
+      <ion-icon name="stats"></ion-icon>
+      <ion-text color="medium">
+        <p style="margin: 2px 20px; font-size: 10px; padding-left: 10px;">Stats</p>
+      </ion-text>
+    </div>
   </div>
+
+
 </ion-content>
