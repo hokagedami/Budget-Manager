@@ -1,7 +1,8 @@
 {
   "name": "budget-manager",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="medium">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -20,13 +20,13 @@
 
   <ion-item>
     <ion-label position="floating">Amount</ion-label>
-    <ion-input type="number" [(ngModel)]="spendingAmount" [value]="spendingAmount" pattern="[0-9]*"></ion-input>
+    <ion-input type="number" [(ngModel)]="amount" [value]="amount" pattern="[0-9]*"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Category</ion-label>
     <ion-select interface="action-sheet" [(ngModel)]="selectedCategory">
-      <ion-select-option *ngFor="let category of icomeCategories; index as i" (ionChange)="categorySelected($event)">
+      <ion-select-option *ngFor="let category of incomeCategories; index as i" (ionChange)="categorySelected($event)">
         {{category}}
       </ion-select-option>
     </ion-select>

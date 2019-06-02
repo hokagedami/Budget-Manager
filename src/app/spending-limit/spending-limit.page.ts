@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpendingLimitPage implements OnInit {
 
+  spendingLimit: number;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  saveSpendingLimit() {
+    console.log(this.spendingLimit);
   }
 
 }

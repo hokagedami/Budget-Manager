@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-spending',
@@ -140,17 +142,14 @@ export class AddSpendingPage implements OnInit {
   categorySet = false;
 
   spendingAmount: number;
-
-  amount: number;
   categoryChosen: string;
   subCategoryChosen: string;
-  comment: string;
+  comment = '';
   date: any;
 
-  spending: object = {
-  };
+  expense: object = { };
 
-  constructor() { }
+  constructor(private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -167,9 +166,44 @@ export class AddSpendingPage implements OnInit {
   }
 
   saveExpense() {
-    console.log(this.selectedCategory.name);
-    console.log(this.subCategoryChosen);
-    console.log(this.spendingAmount);
-    console.log(this.date);
+    const newExpense = {
+      date: this.date.toLocaleString(),
+      amount: this.spendingAmount,
+      category: this.selectedCategory.name,
+      subCategory: this.subCategoryChosen,
+      comment: this.comment
+    };
+    this.expense = newExpense;
+    console.log(this.expense);
+    this.presentAlert();
+  }
+
+  clear() {
+    this.date = '';
+    this.spendingAmount = 0;
+    this.selectedCategory = {};
+    this.subCategoryChosen = '';
+    this.comment = '';
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+     /*  header: 'Alert',
+      subHeader: 'Subtitle', */
+      message: 'Your new expense has been saved.',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'ok',
+          cssClass: 'secondary',
+          handler: () => {
+            this.router.navigate(['/home']);
+            console.log('Confirm OK!');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

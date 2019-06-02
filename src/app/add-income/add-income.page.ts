@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddIncomePage implements OnInit {
 
-  icomeCategories: string[] = [
+  incomeCategories: string[] = [
     'Wages/Salary',
     'Interest Income',
     'Dividends',
@@ -27,5 +27,6 @@ export class AddIncomePage implements OnInit {
 
   categorySelected(event) {
     this.selectedCategory = event.detail.value;
+    console.log(this.selectedCategory);
   }
 }
