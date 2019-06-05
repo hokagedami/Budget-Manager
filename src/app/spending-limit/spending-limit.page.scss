@@ -15,3 +15,7 @@ p{
 .month{
     margin: 5em 1em;
 }
+
+input[type=number]:before {
+    content: '\u20a6';
+}

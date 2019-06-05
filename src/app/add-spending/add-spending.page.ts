@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-add-spending',
@@ -149,9 +150,24 @@ export class AddSpendingPage implements OnInit {
 
   expense: object = { };
 
-  constructor(private router: Router, public alertController: AlertController) { }
+  data: any;
+
+  constructor(
+    private router: Router,
+    public alertController: AlertController,
+    private storage: Storage,
+    private navCtrl: NavController
+    ) {
+     }
 
   ngOnInit() {
+    this.date = null;
+    this.comment = null;
+    this.spendingAmount = null;
+    this.selectedCategory = null;
+    this.categoryChosen = null;
+    this.categorySet = false;
+    this.subCategorySet = false;
   }
 
   categorySelected(event) {
@@ -166,24 +182,46 @@ export class AddSpendingPage implements OnInit {
   }
 
   saveExpense() {
-    const newExpense = {
+    this.expense = {
       date: this.date.toLocaleString(),
       amount: this.spendingAmount,
       category: this.selectedCategory.name,
       subCategory: this.subCategoryChosen,
       comment: this.comment
     };
-    this.expense = newExpense;
-    console.log(this.expense);
+
+    this.storage.get('expenses').then((val) => {
+      if (val === undefined) {
+        this.data = [];
+        this.data.push(this.expense);
+        this.storage.set('expenses', this.data).then((res) => {
+          console.log(res);
+        }).catch((err) => {
+          console.log('set error: ' + err);
+        });
+      } else {
+        this.data = val;
+        this.data.push(this.expense);
+        this.storage.set('expenses', this.data).then((res) => {
+          console.log(res);
+        }).catch((err) => {
+          console.log('set error: ' + err);
+        });
+      }
+    }).catch((err) => {
+      console.log('get error: ' + err);
+    });
     this.presentAlert();
   }
 
   clear() {
-    this.date = '';
-    this.spendingAmount = 0;
-    this.selectedCategory = {};
-    this.subCategoryChosen = '';
-    this.comment = '';
+    this.date = null;
+    this.spendingAmount = null;
+    this.comment = null;
+    this.selectedCategory = null;
+    this.categoryChosen = null;
+    this.categorySet = false;
+    this.subCategorySet = false;
   }
 
   async presentAlert() {
@@ -197,8 +235,7 @@ export class AddSpendingPage implements OnInit {
           role: 'ok',
           cssClass: 'secondary',
           handler: () => {
-            this.router.navigate(['/home']);
-            console.log('Confirm OK!');
+            this.navCtrl.navigateBack('/home');
           }
         }
       ]

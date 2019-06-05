@@ -7,23 +7,19 @@
 </ion-header>
 
 <ion-content>
-    <div  class="title">
-        <p>Set Spending Limit</p>
-    </div>
-
-    <ion-item class="month">
-        <ion-label position="floating">Amount</ion-label>
+      <ion-item class="month">
+        <ion-label position="floating">Spending Limit Amount</ion-label>
         <ion-input 
           type="number" 
-          clear-input="true" 
-          nputmode="'numeric'" 
+          clear-input="true"
           pattern="[0-9]*" 
           style="font-size: 30px; text-align: center;"
-          [(ngModel)]="spendingLimit" [value]="spendingLimit" >
+          [(ngModel)]="spendingLimit">
         </ion-input>
       </ion-item>
 
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed"
+      *ngIf="spendingLimit !== undefined && spendingLimit > 0">
       <ion-fab-button>
         <ion-icon name="done-all" (click)="saveSpendingLimit()"></ion-icon>
       </ion-fab-button>

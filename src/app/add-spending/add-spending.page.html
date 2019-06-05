@@ -1,7 +1,7 @@
 <ion-header class="header-toolbar">
-  <ion-toolbar>
+  <ion-toolbar color="medium">
     <ion-buttons slot="start">
-      <ion-back-button style="padding: 0 0 0 0; margin: 0 0 0 0; font-size: 17px;" text="" icon="exit" defaultHref="/home"></ion-back-button>
+      <ion-back-button style="padding: 0 0 0 0; margin: 0 0 0 0; font-size: 17px;" text=""  defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title color="light" style="margin: 0; font-size: 17px; padding: 0em;">
       Add Expense
@@ -41,7 +41,7 @@
 
   <ion-item>
     <ion-label position="floating">Comment</ion-label>
-    <ion-input inputmode="text" [(ngModel)]="comment" [value]="comment"></ion-input>
+    <ion-input inputmode="text" [(ngModel)]="comment"></ion-input>
   </ion-item>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed"
