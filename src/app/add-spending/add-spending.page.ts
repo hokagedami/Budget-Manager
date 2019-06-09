@@ -191,13 +191,14 @@ export class AddSpendingPage implements OnInit {
     };
 
     this.storage.get('expenses').then((val) => {
-      if (val === undefined) {
+      console.log(val);
+      if (!val) {
         this.data = [];
         this.data.push(this.expense);
         this.storage.set('expenses', this.data).then((res) => {
           console.log(res);
         }).catch((err) => {
-          console.log('set error: ' + err);
+          console.log('set error: ' + err + err.stack);
         });
       } else {
         this.data = val;
@@ -205,11 +206,13 @@ export class AddSpendingPage implements OnInit {
         this.storage.set('expenses', this.data).then((res) => {
           console.log(res);
         }).catch((err) => {
-          console.log('set error: ' + err);
+          console.log('set error: ' + err + err.stack)
         });
       }
     }).catch((err) => {
       console.log('get error: ' + err);
+      throw err;
+      
     });
     this.presentAlert();
   }

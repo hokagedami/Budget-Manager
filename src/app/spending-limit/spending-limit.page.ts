@@ -25,9 +25,7 @@ export class SpendingLimitPage implements OnInit {
     console.log(this.spendingLimit);
 
     this.storage.get('limit').then((val) => {
-      if (val === undefined
-          || val === null
-           || typeof val === 'undefined') {
+      if (!val) {
         this.storage.set('limit', this.spendingLimit).then((res) => {
           console.log(res);
         }).catch((err) => {
@@ -50,8 +48,6 @@ export class SpendingLimitPage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-     /*  header: 'Alert',
-      subHeader: 'Subtitle', */
       message: `Your spending limit for this month has been set at  ${this.naira}${parseFloat(this.spendingLimit.toFixed(2))}`,
       buttons: [
         {

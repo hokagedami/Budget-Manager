@@ -1,0 +1,50 @@
+.delete_btn {
+  margin: 0;
+  position: relative;
+  top: 100%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 30%;
+}
+
+.category {
+    font-size: 20px;
+    margin: 0 0 0 0;
+}
+
+.date-comment {
+    display: flex;
+    text-decoration: aqua;
+}
+
+.date-comment p{
+    margin: 0 10px 0 0;
+    font-size: 15px;
+}
+
+.savings{
+    display: flex;
+    flex-direction: row;
+    margin: 2.5em;
+}
+.savings-text{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+}
+.savings-number{
+    position: absolute;
+    top: 50%;
+    left: 77%;
+}
+ion-card-content {
+    --background: #ffffff;
+    --color: #3880ff;
+    padding-bottom: 5px;
+}
+.segments{
+    display: flex;
+    justify-content: space-evenly;
+    border-style: ridge;
+}

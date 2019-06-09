@@ -84,8 +84,6 @@ export class AddIncomePage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-     /*  header: 'Alert',
-      subHeader: 'Subtitle', */
       message: 'Your new income has been saved.',
       buttons: [
         {

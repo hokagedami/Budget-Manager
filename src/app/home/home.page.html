@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar color="medium" slot="primary" mode="md">
-    <ion-title color="light">
+  <ion-toolbar color="primary" slot="primary" mode="md">
+    <ion-title color="dark">
       Home
     </ion-title>
   </ion-toolbar>
@@ -15,18 +15,18 @@
           <ion-row>
             <ion-col size="12" size-sm>
               <ion-text color="medium">
-                <p style="font-size: 10px; margin: 0 20px; padding-left: 40px">Expenses</p>
+                <p style="font-size: 10px; margin: 0 20px;">Expenses</p>
               </ion-text>
-              <ion-text color="primary">
-                <h3 style="margin: 2px 20px; padding-left: 30px">{{expenses || 0}}</h3>
+              <ion-text color="secondary">
+                <h3 style="margin: 2px 20px;">{{ expenses || 0 }}</h3>
               </ion-text>
             </ion-col>
             <ion-col size="12" size-sm>
               <ion-text color="medium">
-                <p style="font-size: 10px; margin: 0 20px; padding-left: 40px">Income</p>
+                <p style="font-size: 10px; margin: 0 20px;">Income</p>
               </ion-text>
               <ion-text color="secondary">
-                <h3 style="margin: 2px 20px; padding-left: 30px">{{income || 0}}</h3>
+                <h3 style="margin: 2px 20px;">{{income || 0}}</h3>
               </ion-text>
             </ion-col>
           </ion-row>
@@ -37,17 +37,20 @@
 
       <ion-col>
         <ion-text color="secondary">
-          <h1 style="margin:35px 20px 0 20px; padding-left: 10px">{{(spendingLimit - expenses) || 0}}</h1>
+          <h1 style="margin:35px 20px 0 20px; padding-left: 10px">{{leftToSpend || 0}}</h1>
         </ion-text>
         <ion-text color="medium">
-          <p style="margin: 2px 20px; font-size: 10px;; padding-left: 10px;">Left To Spend</p>
+          <p *ngIf="leftToSpend >= 0" style="margin: 2px 20px; font-size: 10px;; padding-left: 10px;">Left To Spend</p>
+          <p *ngIf="leftToSpend < 0" style="margin: 2px 20px; font-size: 10px;; padding-left: 10px;">Overspent on {{ spendingLimit }} limit</p>
         </ion-text>
       </ion-col>
 
     </ion-row>
   </ion-grid>
 
-  <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+  <hr style="width:90%; height: .05em; background-color: black;">
+
+  <div class="nav" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
     <div class="box" (click)="openPage('spending-limit')">
       <ion-icon name="speedometer"></ion-icon>
       <ion-text color="medium">
@@ -67,7 +70,7 @@
       </ion-text>
     </div>
     <div class="box">
-      <ion-icon name="stats"></ion-icon>
+      <ion-icon name="stats" (click)="openPage('stats')"></ion-icon>
       <ion-text color="medium">
         <p style="margin: 2px 20px; font-size: 10px; padding-left: 10px;">Stats</p>
       </ion-text>
